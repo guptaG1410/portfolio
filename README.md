@@ -2,9 +2,9 @@
 
 Personal site for Govind Gupta, a software engineer based in New Delhi. It presents verified experience, projects, and contact details from the resume, with a dark engineering layout and a working contact path.
 
-**Repository:** [github.com/guptaG1410/portfolio](https://github.com/guptaG1410/portfolio)
+**Live site:** [portfolio-seven-iota-uvvyj362na.vercel.app](https://portfolio-seven-iota-uvvyj362na.vercel.app)
 
-The production URL is added here after the Vercel deploy.
+**Repository:** [github.com/guptaG1410/portfolio](https://github.com/guptaG1410/portfolio)
 
 ## Stack
 
@@ -91,11 +91,18 @@ All visible copy lives in `lib/site.ts`.
 
 ## Deploy
 
-This app is a standard Next.js project and deploys on Vercel without a custom server.
+The site is deployed on Vercel as the project `portfolio` on the `guptag1410` account.
 
-1. Import [guptaG1410/portfolio](https://github.com/guptaG1410/portfolio) in Vercel, or run `vercel` from this directory.
-2. Framework preset: Next.js. Build command: `npm run build`. Output is handled by Vercel.
-3. Set `NEXT_PUBLIC_SITE_URL` to the production origin after the first deploy, then redeploy so canonical and Open Graph URLs match the live host.
-4. Add the Resend variables when you want the contact form to deliver mail. The site still builds and the form stays honest without them.
+Production: [https://portfolio-seven-iota-uvvyj362na.vercel.app](https://portfolio-seven-iota-uvvyj362na.vercel.app)
 
-`master` is the branch Vercel should track.
+Dashboard: [vercel.com/guptag1410s-projects/portfolio](https://vercel.com/guptag1410s-projects/portfolio)
+
+GitHub is not connected yet, so a push to `master` does not redeploy by itself. In the Vercel project, connect [guptaG1410/portfolio](https://github.com/guptaG1410/portfolio) and track `master`. Until then, publish from this directory with:
+
+```bash
+npx vercel deploy --prod
+```
+
+Vercel detects Next.js and runs `npm run build`. If `NEXT_PUBLIC_SITE_URL` is empty or still localhost, canonical and Open Graph URLs use the Vercel host. Set `NEXT_PUBLIC_SITE_URL` to a custom domain when you add one, then redeploy.
+
+Add the Resend variables in the Vercel project when you want the contact form to deliver mail. The site still builds, and the form stays honest, without them.
