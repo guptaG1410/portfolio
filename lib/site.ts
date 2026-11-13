@@ -4,7 +4,17 @@
  * Project URLs stay empty until real links exist.
  */
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000").replace(/\/$/, "");
+const leetcodeProfile = "https://leetcode.com/u/guptagovind1410/";
+
+function siteUrl() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+  if (configured && !configured.includes("localhost")) return configured;
+  const production = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (production) return `https://${production.replace(/^https?:\/\//, "").replace(/\/$/, "")}`;
+  const preview = process.env.VERCEL_URL?.trim();
+  if (preview) return `https://${preview.replace(/^https?:\/\//, "").replace(/\/$/, "")}`;
+  return configured || "http://localhost:3000";
+}
 
 export const site = {
   name: "Govind Gupta",
@@ -16,9 +26,9 @@ export const site = {
   phoneHref: "tel:+919643099218",
   github: "https://github.com/guptaG1410",
   linkedin: "https://www.linkedin.com/in/guptag1410",
-  /** Set NEXT_PUBLIC_LEETCODE_URL. No profile is guessed. */
-  leetcodeUrl: process.env.NEXT_PUBLIC_LEETCODE_URL?.trim() ?? "",
-  url: siteUrl,
+  /** Real profile. NEXT_PUBLIC_LEETCODE_URL overrides it when set. */
+  leetcodeUrl: process.env.NEXT_PUBLIC_LEETCODE_URL?.trim() || leetcodeProfile,
+  url: siteUrl(),
   resume: {
     href: "/Govind-Gupta-Resume.pdf",
     fileName: "Govind-Gupta-Resume.pdf",

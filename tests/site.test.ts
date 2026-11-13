@@ -9,8 +9,9 @@ test("project links are unpublished until explicitly set", () => {
   }
 });
 
-test("leetcode is configurable and not invented", () => {
-  assert.equal(site.leetcodeUrl, process.env.NEXT_PUBLIC_LEETCODE_URL?.trim() ?? "");
+test("leetcode uses the published profile unless overridden", () => {
+  const expected = process.env.NEXT_PUBLIC_LEETCODE_URL?.trim() || "https://leetcode.com/u/guptagovind1410/";
+  assert.equal(site.leetcodeUrl, expected);
 });
 
 test("achievement figures keep their project context", () => {
