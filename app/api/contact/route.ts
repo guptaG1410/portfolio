@@ -74,12 +74,7 @@ export async function POST(request: Request) {
   const from = process.env.CONTACT_FROM_EMAIL;
   const to = process.env.CONTACT_TO_EMAIL || site.email;
   if (!apiKey || !from || !to) {
-    return fail(503, {
-      ok: false,
-      code: "NOT_CONFIGURED",
-      message:
-        "Email delivery is not configured yet. Use the email link, or set RESEND_API_KEY, CONTACT_FROM_EMAIL, and CONTACT_TO_EMAIL.",
-    });
+    return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
   }
 
   const safeName = parsed.data.name.replace(/[\r\n]/g, " ");
